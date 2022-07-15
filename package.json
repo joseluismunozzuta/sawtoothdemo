@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node HelloWorldProcessor.js"
+    "start": "node interact.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
