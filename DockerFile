@@ -21,8 +21,9 @@ RUN \
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
     && apt-get install -y nodejs
 
-WORKDIR /processor
+WORKDIR /app
+ADD package.json handler.js processor.js interact.js ./
 
-CMD npm install && npm start
-
-EXPOSE 4004/tcp
+RUN npm install express crypto protobufjs sawtooth-sdk secp256k1 text-encoding uuid zeromq
+RUN npm install
+CMD node interact.js

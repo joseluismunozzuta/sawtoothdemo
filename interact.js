@@ -2,9 +2,10 @@ const { createHash } = require('crypto')
 const { CryptoFactory, createContext } = require('sawtooth-sdk/signing')
 const protobuf = require('sawtooth-sdk/protobuf')
 const fetch = require('node-fetch');
-const { Secp256k1PrivateKey } = require('sawtooth-sdk/signing/secp256k1')
-const { TextEncoder, TextDecoder } = require('text-encoding/lib/encoding')
-
+const { Secp256k1PrivateKey } = require('sawtooth-sdk/signing/secp256k1');
+const { TextEncoder, TextDecoder } = require('text-encoding/lib/encoding');
+const express = require('express');
+const app = express();
 
 const FAMILY_NAME = "HelloWorld";
 const FAMILY_VERSION = "1.0";
@@ -127,3 +128,7 @@ client.write_data(payload).then( () => {
 client.read_data().then((data) => {
     console.log(`Read from blockchain: [${data}]`);
 });
+
+app.get('/', (req, res) => res.send("<h1>Hola mundo</h1>"));
+
+app.listen(process.env.PORT || 8080);
